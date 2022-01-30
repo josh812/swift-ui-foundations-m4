@@ -8,25 +8,28 @@
 import SwiftUI
 
 struct RecipeDetailView: View {
+    
     var recipe:Recipe
     
     var body: some View {
+        
         ScrollView {
-            VStack(alignment: .leading) {
+        
+            VStack (alignment: .leading) {
+                
                 // MARK: Recipe Image
                 Image(recipe.image)
                     .resizable()
                     .scaledToFill()
-                    .frame(width: 400, height: 200)
-                    .clipped()
                 
                 // MARK: Ingredients
                 VStack(alignment: .leading) {
                     Text("Ingredients")
                         .font(.headline)
                         .padding([.bottom, .top], 5)
-                    ForEach(recipe.ingredients, id: \.self) { ingredient in
-                        Text("• " + ingredient)
+                    
+                    ForEach (recipe.ingredients) { item in
+                        Text("• " + item.name)
                     }
                 }
                 .padding(.horizontal)
@@ -38,7 +41,8 @@ struct RecipeDetailView: View {
                 VStack(alignment: .leading) {
                     Text("Directions")
                         .font(.headline)
-                        .padding(.vertical, 5.0)
+                        .padding([.bottom, .top], 5)
+                    
                     ForEach(0..<recipe.directions.count, id: \.self) { index in
                         Text(String(index+1) + ". " + recipe.directions[index])
                             .padding(.bottom, 5)
